@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_profile"
+            android:title="My Profile"
+        android:icon="@drawable/pro"/>
+
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/ic_menu_send"
+            />
+
+        <item
+            android:id="@+id/help"
+            android:title="Help"
+            android:icon="@drawable/help"
+           />
+
+        <item
+            android:id="@+id/booking"
+            android:title="View my booking"
+            android:icon="@drawable/book"/>
+
+        <item
+            android:id="@+id/logout"
+            android:title="Log out"
+            android:icon="@drawable/logout"/>
+
+
+
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/tac"
+                android:title="Terms and conditions"
+            android:icon="@drawable/ic_menu_manage" />
+
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+
+        </menu>
+    </item>
+
+</menu>

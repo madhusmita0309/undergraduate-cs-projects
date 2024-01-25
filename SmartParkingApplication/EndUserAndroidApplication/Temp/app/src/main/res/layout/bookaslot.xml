@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/rd"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:id="@+id/id"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:layout_below="@id/id"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userid"
+android:layout_below="@id/username"
+        android:textSize="18sp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/carno"
+android:layout_below="@id/userid"
+        android:textSize="18sp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_below="@id/carno"
+        android:id="@+id/dur"
+        android:text="Duration: "
+        />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/hrs"
+        android:hint="hrs"
+        android:layout_below="@id/dur"
+
+        android:inputType="number"
+        />
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/mins"
+        android:hint="mins"
+
+        android:inputType="number"
+        android:layout_above="@+id/bookaslot"
+        android:layout_alignEnd="@+id/bookaslot" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book a slot"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp"
+        android:layout_below="@id/hrs"
+        android:id="@+id/bookaslot"/>
+
+</RelativeLayout>
