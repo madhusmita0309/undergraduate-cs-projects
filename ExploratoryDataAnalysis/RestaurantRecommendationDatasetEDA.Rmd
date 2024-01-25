@@ -1,0 +1,164 @@
+---
+title: "Restaurant Recommendation"
+author: "Madhusmita"
+date: "April 4, 2016"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Analysis based on User Ratings
+
+
+```{r echo=FALSE}
+inputPanel(
+     
+  selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20),
+  
+  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2)
+)
+
+renderPlot({
+  rating_final <- read.csv("C:/Users/madhusmita/Downloads/attachments/rating_final.csv",stringsAsFactors=FALSE)
+  hist(rating_final$rating, probability = TRUE,col = "lightblue", border = "pink", breaks = as.numeric(input$n_breaks), xlab = "", main = "Rating analysis")
+  
+  dens <- density(faithful$eruptions, adjust = input$bw_adjust)
+  lines(dens, col = "blue")
+  
+  tags$br()
+  
+  
+  })
+```
+
+```{r echo=FALSE}
+ rating_final <- read.csv("C:/Users/madhusmita/Downloads/attachments/rating_final.csv",stringsAsFactors=FALSE)
+ 
+summary(rating_final)
+```
+
+```{r echo=FALSE}
+renderPlot({
+  rating_final <- read.csv("C:/Users/madhusmita/Downloads/attachments/rating_final.csv",stringsAsFactors=FALSE)
+rating_all <- data.frame(rating_final$rating, rating_final$food_rating, rating_final$service_rating)
+all1 <- subset(rating_all, (rating_all$rating_final.rating == 2 & rating_all$rating_final.food_rating == 2 & rating_final$service_rating == 2))
+
+ok <- c(1161, sum(all1$rating_final.rating))
+lbls2 <- c("normal", "best")
+
+pie(ok, lbls2, main = "Restaurants rating", col=rainbow(length(lbls2)))
+})
+
+
+```
+
+
+
+## Analysis based on Budget
+
+```{r  echo=FALSE}
+renderPlot({
+  geoplaces2 <-read.csv("C:/Users/madhusmita/Downloads/attachments/geoplaces2.csv",stringsAsFactors=FALSE)
+  budget <- data.frame(geoplaces2$price, geoplaces2$city)
+
+
+la <- sum(budget$geoplaces2.price == "low")
+lb <- sum(budget$geoplaces2.price == "medium")
+lc <- sum(budget$geoplaces2.price == "high")
+
+all <- c(la,lb,lc)
+lbls <- c("low", "medium", "high")
+pie(all,lbls, main = "", col=rainbow(length(lbls)))
+
+  
+  
+  
+  ##mytable <- table(userprofile$budget)
+##lbls <- paste(names(mytable), "\n", mytable, sep="")
+##pie(mytable, labels = lbls,
+  ## main="Pie Chart of budget\n (with sample sizes)")
+
+})
+
+
+```
+
+
+```{r echo=FALSE}
+tags$h1("Analysis based on Cuisine")
+ renderPlot({ usercuisine <-read.csv("C:/Users/madhusmita/Downloads/attachments/usercuisine.csv",stringsAsFactors=FALSE)
+
+count_cuisine <- table(usercuisine$Rcuisine)
+plot(count_cuisine,type = "o", col = "purple", ylab = "Frequency")
+
+
+})
+ usercuisine <-read.csv("C:/Users/madhusmita/Downloads/attachments/usercuisine.csv",stringsAsFactors=FALSE)
+ 
+
+
+
+```
+
+
+```{r echo=FALSE}
+renderPlot({ usercuisine <-read.csv("C:/Users/madhusmita/Downloads/attachments/usercuisine.csv",stringsAsFactors=FALSE)
+
+chefmozcuisine <-read.csv("C:/Users/madhusmita/Downloads/attachments/chefmozcuisine.csv",stringsAsFactors=FALSE)
+
+count_cuisine <- table(usercuisine$Rcuisine)
+count_cuisine2 <- table(chefmozcuisine$Rcuisine)
+
+plot(count_cuisine2,type = "o", col = "yellow", ylab = "Frequency")
+lines(count_cuisine,type = "o", col = "red", ylab = "Frequency")
+
+})
+
+
+
+
+```
+
+
+```{r echo=FALSE}
+library(knitr)
+tags$h1("Analysis based on Payment modes")
+renderPlot({ userpayment <-read.csv("C:/Users/madhusmita/Downloads/attachments/userpayment.csv",stringsAsFactors=FALSE)
+
+
+count <- table(userpayment$Upayment)
+barplot(count, col = "blue", las = 2, ylab = "Frequency")
+tags$br()
+tags$br()
+
+})
+userpayment <-read.csv("C:/Users/madhusmita/Downloads/attachments/userpayment.csv",stringsAsFactors=FALSE)
+
+count3 <- table(userpayment$Upayment)
+c2 <- data.frame(count3)
+kable(c2)
+
+```
+
+```{r echo=FALSE}
+renderPlot({ userpayment <-read.csv("C:/Users/madhusmita/Downloads/attachments/userpayment.csv",stringsAsFactors=FALSE)
+
+chefmozaccepts <-read.csv("C:/Users/madhusmita/Downloads/attachments/chefmozaccepts.csv",stringsAsFactors=FALSE)
+
+count <- table(userpayment$Upayment)
+
+
+count2 <- table(chefmozaccepts$Rpayment)
+plot(count2,type = "o", col = "yellow", ylab = "Frequency")
+lines(count,type = "o", col = "purple", ylab = "Frequency")
+
+})
+
+
+```
+
